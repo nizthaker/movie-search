@@ -2,8 +2,6 @@
 
 A React Native application for searching and browsing movies. The app provides a user-friendly interface to discover movies with features like search functionality and detailed movie views.
 
----
-
 ## Project Structure
 
 ```
@@ -22,23 +20,17 @@ util/                 # Utility functions
 
 ```
 
----
-
 ## Key Features
 
 - **Movie Search:** Quickly find movies using the search bar.
 - **Movie Listing:** Browse through a list of trending or searched movies.
 - **Movie Details:** Tap on a movie to see detailed information.
 
----
-
 ## Technologies Used
 
 - React Native
 - TypeScript
 - TMDB API for movie data
-
----
 
 ## Getting Started
 
@@ -52,8 +44,8 @@ util/                 # Utility functions
 1. Clone the repository:
 
    ```bash
-   git clone <your-repo-url>
-   cd <your-project-folder>
+   git clone git@github.com:nizthaker/movie-search.git
+   cd movie-search
    ```
 
 2. Install dependencies:
