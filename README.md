@@ -2,6 +2,11 @@
 
 A React Native application for searching and browsing movies. The app provides a user-friendly interface to discover movies with features like search functionality, popular movies listing, sorting by name, release date, or ratings, and detailed movie views, all with support for dark and light modes powered by a context-based theming system.
 
+<img width="366" alt="image" src="https://github.com/user-attachments/assets/7aff7c50-54f4-416d-adfe-faf8bb9a2410" /> <img width="368" alt="image" src="https://github.com/user-attachments/assets/c1703526-5b8f-4536-be49-47a90b731d1a" />
+
+
+
+
 ## Project Structure
 
 ```
