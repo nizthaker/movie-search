@@ -3,9 +3,13 @@ import { Text, Image, ScrollView, ActivityIndicator, StyleSheet } from 'react-na
 import { useQuery } from '@tanstack/react-query';
 import { formatDate } from 'util/date';
 import { fetchMovieDetails } from 'api/queries';
+import useThemeColor from 'hooks/useThemeColor';
 
 const MovieDetailsScreen = () => {
   const { id } = useLocalSearchParams();
+  const theme = useThemeColor();
+
+  const styles = getStyles(theme);
 
   const {
     data: movie,
@@ -18,7 +22,7 @@ const MovieDetailsScreen = () => {
   });
 
   if (isLoading) {
-    return <ActivityIndicator style={{ marginTop: 40 }} size="large" color="#2563eb" />;
+    return <ActivityIndicator style={{ marginTop: 40 }} />;
   }
 
   if (isError || !movie) {
@@ -44,40 +48,41 @@ const MovieDetailsScreen = () => {
 };
 export default MovieDetailsScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#fff',
-    flexGrow: 1,
-  },
-  poster: {
-    width: '100%',
-    height: 400,
-    borderRadius: 12,
-    marginBottom: 20,
-    backgroundColor: '#eee',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#4b5563',
-    marginBottom: 6,
-  },
-  overview: {
-    fontSize: 16,
-    color: '#374151',
-    marginTop: 16,
-    lineHeight: 22,
-  },
-  error: {
-    padding: 20,
-    textAlign: 'center',
-    color: 'red',
-    fontSize: 16,
-  },
-});
+const getStyles = (theme: ReturnType<typeof useThemeColor>) =>
+  StyleSheet.create({
+    container: {
+      padding: 20,
+      backgroundColor: theme.background,
+      flexGrow: 1,
+    },
+    poster: {
+      width: '100%',
+      height: 400,
+      borderRadius: 12,
+      marginBottom: 20,
+      backgroundColor: theme.placeholder,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: '700',
+      color: theme.primaryText,
+      marginBottom: 8,
+    },
+    subtitle: {
+      fontSize: 16,
+      color: theme.secondaryText,
+      marginBottom: 6,
+    },
+    overview: {
+      fontSize: 16,
+      color: theme.secondaryText,
+      marginTop: 16,
+      lineHeight: 22,
+    },
+    error: {
+      padding: 20,
+      textAlign: 'center',
+      color: theme.errorText,
+      fontSize: 16,
+    },
+  });

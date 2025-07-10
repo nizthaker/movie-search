@@ -1,4 +1,5 @@
 import { Movie } from 'api/types';
+import useThemeColor from 'hooks/useThemeColor';
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { formatDate } from 'util/date';
 
@@ -8,6 +9,10 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie, onPress }: MovieCardProps) => {
+  const theme = useThemeColor();
+
+  const styles = getStyles(theme);
+
   return (
     <Pressable onPress={onPress} style={styles.card} testID="movie-card">
       {movie.poster_path ? (
@@ -38,45 +43,46 @@ const MovieCard = ({ movie, onPress }: MovieCardProps) => {
 
 export default MovieCard;
 
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-  },
-  poster: {
-    width: 60,
-    height: 90,
-    borderRadius: 8,
-    backgroundColor: '#ddd',
-  },
-  posterPlaceholder: {
-    width: 60,
-    height: 90,
-    borderRadius: 8,
-    backgroundColor: '#ccc',
-  },
-  info: {
-    flex: 1,
-    marginLeft: 12,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#111827',
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: '#6b7280',
-    marginBottom: 2,
-  },
-  overview: {
-    fontSize: 13,
-    color: '#374151',
-    marginTop: 4,
-  },
-});
+const getStyles = (theme: ReturnType<typeof useThemeColor>) =>
+  StyleSheet.create({
+    card: {
+      flexDirection: 'row',
+      padding: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: theme.border,
+      backgroundColor: theme.background,
+      alignItems: 'flex-start',
+    },
+    poster: {
+      width: 60,
+      height: 90,
+      borderRadius: 8,
+      backgroundColor: theme.placeholder,
+    },
+    posterPlaceholder: {
+      width: 60,
+      height: 90,
+      borderRadius: 8,
+      backgroundColor: theme.placeholder,
+    },
+    info: {
+      flex: 1,
+      marginLeft: 12,
+    },
+    title: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: theme.primaryText,
+      marginBottom: 4,
+    },
+    subtitle: {
+      fontSize: 13,
+      color: theme.secondaryText,
+      marginBottom: 2,
+    },
+    overview: {
+      fontSize: 13,
+      color: theme.secondaryText,
+      marginTop: 4,
+    },
+  });

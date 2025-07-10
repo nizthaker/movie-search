@@ -1,4 +1,6 @@
-import { TextInput, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import useThemeColor from 'hooks/useThemeColor';
+import { TextInput, View, Pressable } from 'react-native';
 
 interface SearchBarProps {
   value: string;
@@ -6,22 +8,35 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ value, onChangeText }: SearchBarProps) => {
+  const theme = useThemeColor();
+
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: theme.border,
+        borderRadius: 10,
+        padding: 10,
+      }}>
       <TextInput
         style={{
-          borderWidth: 1,
-          borderColor: 'gray',
-          borderRadius: 10,
-          padding: 10,
           flex: 1,
+          paddingVertical: 5,
+          color: theme.secondaryText,
         }}
         placeholder="Search movies..."
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor={theme.secondaryText}
         value={value}
         onChangeText={onChangeText}
         returnKeyType="search"
       />
+      {value && (
+        <Pressable onPress={() => onChangeText('')}>
+          <Feather name="x" size={20} color={theme.secondaryText} />
+        </Pressable>
+      )}
     </View>
   );
 };

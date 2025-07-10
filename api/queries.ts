@@ -31,3 +31,25 @@ export const fetchMovieDetails = async (movieId: number) => {
     console.error('Error fetching movie details:', error);
   }
 };
+
+export const fetchPopularMovies = async (page: number) => {
+  try {
+    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Http error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return {
+      results: data.results ?? [],
+      page: data.page ?? page,
+      totalPages: data.total_pages ?? 1,
+    };
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    throw error;
+  }
+};
