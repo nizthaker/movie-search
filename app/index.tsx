@@ -28,7 +28,6 @@ const Home = () => {
 
   const [sortOption, setSortOption] = useState<SortOption>('name');
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState(SORT_ITEMS);
 
   const {
     data: searchedMovies = [],
@@ -100,14 +99,13 @@ const Home = () => {
     <View style={{ flex: 1, backgroundColor: theme.background, padding: 20 }}>
       <SearchBar value={query} onChangeText={setQuery} />
 
-      <View style={{ marginTop: 10, zIndex: 1000 }}>
+      <View style={{ marginTop: 10 }}>
         <DropDownPicker
           open={open}
           value={sortOption}
-          items={items}
+          items={SORT_ITEMS}
           setOpen={setOpen}
           setValue={setSortOption}
-          setItems={setItems}
           placeholder="Sort by"
           containerStyle={{ marginBottom: open ? 150 : 20 }}
           style={{
@@ -150,7 +148,7 @@ const Home = () => {
       {!isLoading && !isError && movies.length > 0 && (
         <FlatList
           data={movies}
-          keyExtractor={(item, index) => `${item}-${index}`}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={renderMovie}
           onEndReached={!debouncedQuery ? handleEndReached : undefined}
           onEndReachedThreshold={0.5}
