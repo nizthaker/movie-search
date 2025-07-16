@@ -49,7 +49,7 @@ const Home = () => {
   } = useInfiniteQuery({
     queryKey: ['latestMovies'],
     initialPageParam: 1,
-    queryFn: async ({ pageParam }) => fetchPopularMovies(pageParam),
+    queryFn: ({ pageParam }) => fetchPopularMovies(pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
     enabled: !debouncedQuery,

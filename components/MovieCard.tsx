@@ -14,16 +14,15 @@ const MovieCard = ({ movie, onPress }: MovieCardProps) => {
   const styles = getStyles(theme);
 
   return (
-    <Pressable onPress={onPress} style={styles.card} testID="movie-card">
+    <Pressable onPress={onPress} style={styles.card}>
       {movie.poster_path ? (
         <Image
           source={{ uri: `https://image.tmdb.org/t/p/w92${movie.poster_path}` }}
           style={styles.poster}
           resizeMode="cover"
-          testID="movie-poster"
         />
       ) : (
-        <View style={styles.posterPlaceholder} testID="poster-placeholder" />
+        <View style={styles.posterPlaceholder} />
       )}
       <View style={styles.info}>
         <Text style={styles.title} numberOfLines={1}>

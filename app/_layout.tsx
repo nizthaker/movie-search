@@ -18,7 +18,7 @@ export default function RootLayout() {
   );
 }
 
-function AppNavigator() {
+const AppNavigator = () => {
   const themeColors = useThemeColor();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
@@ -55,4 +55,4 @@ function AppNavigator() {
       />
     </>
   );
-}
+};

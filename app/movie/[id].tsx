@@ -53,7 +53,6 @@ const getStyles = (theme: ReturnType<typeof useThemeColor>) =>
     container: {
       padding: 20,
       backgroundColor: theme.background,
-      flexGrow: 1,
     },
     poster: {
       width: '100%',
